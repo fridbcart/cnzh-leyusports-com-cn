@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fridbcart.github.io/cnzh-leyusports-com-cn/sitemap.xml
