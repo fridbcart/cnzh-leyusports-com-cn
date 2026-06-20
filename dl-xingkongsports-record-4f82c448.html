@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料索引 · 星空体育</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5faf9;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #1c2e2c;
+            padding: 1.5rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 1120px;
+            width: 100%;
+        }
+
+        /* 头部标识与导航 */
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.6rem 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #cfe3df;
+            margin-bottom: 2.5rem;
+        }
+
+        .site-header .brand {
+            font-weight: 600;
+            font-size: 1.4rem;
+            letter-spacing: 0.02em;
+            color: #1d5c56;
+        }
+
+        .site-header .brand small {
+            font-weight: 400;
+            font-size: 0.75rem;
+            color: #5f8882;
+            margin-left: 0.5rem;
+        }
+
+        .meta-tagline {
+            font-size: 0.9rem;
+            background: #e3f2ef;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            color: #1d5c56;
+        }
+
+        /* hero 摘要 */
+        .hero-summary {
+            background: linear-gradient(145deg, #e3f2ef 0%, #d0e9e4 100%);
+            border-radius: 32px;
+            padding: 2.2rem 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 12px rgba(28, 46, 44, 0.04);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-summary h1 {
+            font-size: 1.9rem;
+            font-weight: 600;
+            line-height: 1.3;
+            color: #08322d;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-summary .sub {
+            font-size: 1rem;
+            color: #2a5c55;
+            max-width: 580px;
+        }
+
+        .hero-summary .sub a {
+            color: #0b4f47;
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+            text-decoration-thickness: 2px;
+            text-decoration-color: #74b0a8;
+            font-weight: 500;
+        }
+
+        .hero-summary .sub a:hover {
+            color: #08322d;
+            text-decoration-color: #08322d;
+        }
+
+        .hero-badge {
+            background: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #1d5c56;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            white-space: nowrap;
+        }
+
+        /* 网格卡片 —— 产品亮点 · 资料索引感 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.6rem;
+            margin-bottom: 2.4rem;
+        }
+
+        .card-item {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 1.8rem 1.4rem 1.6rem;
+            box-shadow: 0 4px 14px rgba(27, 71, 66, 0.04);
+            transition: box-shadow 0.2s ease, transform 0.15s;
+            border: 1px solid #dfeeeb;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-item:hover {
+            box-shadow: 0 8px 24px rgba(27, 71, 66, 0.08);
+            transform: translateY(-3px);
+        }
+
+        .card-icon {
+            font-size: 1.7rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .card-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1d5c56;
+            margin-bottom: 0.3rem;
+        }
+
+        .card-item p {
+            font-size: 0.95rem;
+            color: #2c4d48;
+            margin: 0.4rem 0;
+            flex: 1;
+        }
+
+        .card-item .tag {
+            display: inline-block;
+            background: #e3f2ef;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #1d5c56;
+            margin-top: 0.5rem;
+            align-self: flex-start;
+        }
+
+        /* 使用建议 + 场景段落（卡片式行） */
+        .scenario-block {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2rem;
+            border-left: 6px solid #6bb0a7;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .scenario-block h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #08322d;
+            margin-bottom: 0.8rem;
+        }
+
+        .scenario-block p {
+            margin-bottom: 0.6rem;
+            color: #1c3b36;
+        }
+
+        .scenario-block .insight-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.9rem 0 0.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1.2rem;
+        }
+
+        .scenario-block .insight-list li {
+            background: #ecf6f3;
+            padding: 0.25rem 1rem 0.25rem 1.8rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            position: relative;
+            color: #1c4b44;
+        }
+
+        .scenario-block .insight-list li::before {
+            content: "●";
+            position: absolute;
+            left: 0.6rem;
+            color: #4b9c91;
+            font-size: 0.8rem;
+        }
+
+        /* faq 摘要 —— 小字号精简 */
+        .faq-mini {
+            background: #ecf6f3;
+            border-radius: 28px;
+            padding: 1.5rem 1.8rem;
+            margin-top: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .faq-mini h2 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: #17524b;
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem 1.5rem;
+        }
+
+        .faq-item {
+            font-size: 0.85rem;
+        }
+
+        .faq-item strong {
+            display: block;
+            color: #0a3e38;
+            font-weight: 600;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-item p {
+            color: #2f5b54;
+        }
+
+        /* 脚注 · 可信说明 */
+        .footer-note {
+            border-top: 1px solid #cfe3df;
+            padding-top: 1.5rem;
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #3f6d66;
+            gap: 0.8rem;
+        }
+
+        .footer-note a {
+            color: #1d5c56;
+            text-decoration: underline;
+            text-underline-offset: 0.1em;
+        }
+
+        .footer-note .quiet {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .hero-summary {
+                padding: 1.5rem 1.2rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .hero-summary h1 {
+                font-size: 1.6rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .scenario-block {
+                padding: 1.2rem 1.2rem;
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            .site-header .brand {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <header class="site-header">
+        <div class="brand">资料索引 · 体育<span small>信息整理</span></div>
+        <div class="meta-tagline">蓝绿 · 结构化</div>
+    </header>
+
+    <!-- hero 摘要 -->
+    <div class="hero-summary">
+        <div>
+            <h1>星空体育 · 信息梳理</h1>
+            <div class="sub">
+                从资料整理与内容索引的角度，<a href="https://dl-xingkongsports.com">星空体育</a>作为一个信息聚合与运动内容展示的站点，其定位偏向于提供体育赛事资料、队伍数据与相关资讯。本页围绕该平台的内容结构，整理了若干功能亮点与使用角度。
+            </div>
+        </div>
+        <div class="hero-badge">📋 产品说明式</div>
+    </div>
+
+    <!-- 网格卡片：亮点 + 索引特征 -->
+    <div class="card-grid">
+        <div class="card-item">
+            <div class="card-icon">📇</div>
+            <h3>内容分类</h3>
+            <p>按赛事类型、队伍、联赛等维度组织信息，便于从不同入口检索运动资料。结构偏向目录式索引，适合查阅特定项目。</p>
+            <span class="tag">资料结构</span>
+        </div>
+        <div class="card-item">
+            <div class="card-icon">🧩</div>
+            <h3>模块化展示</h3>
+            <p>卡片与列表交替使用，重要数据以摘要形式前置。视觉上强调信息层级，减少非必要装饰，突出可读性。</p>
+            <span class="tag">界面特征</span>
+        </div>
+        <div class="card-item">
+            <div class="card-icon">⚙️</div>
+            <h3>信息检索</h3>
+            <p>通过分类过滤与关键词索引，可快速定位特定运动项目或队伍资料。适合需要横向对比或查阅历史数据的场景。</p>
+            <span class="tag">使用方式</span>
+        </div>
+    </div>
+
+    <!-- 使用建议 + 场景 (产品说明) -->
+    <div class="scenario-block">
+        <h2>📌 使用建议 · 资料索引场景</h2>
+        <p>若你正在收集不同体育项目的基础信息或队伍数据，<a href="https://dl-xingkongsports.com">星空体育</a>提供了一种相对结构化的浏览途径。建议按以下思路利用页面内容：</p>
+        <ul class="insight-list">
+            <li>先通过顶部导航或分类标签缩小范围</li>
+            <li>关注卡片摘要中的关键指标（胜率、积分、近期状态）</li>
+            <li>可结合外部数据源进行交叉比对，提高信息完整度</li>
+            <li>注意资料更新日期，以判断时效性</li>
+        </ul>
+        <p style="margin-top: 0.5rem;">从信息整理的角度，该站点更偏向一个索引型面板，而非深度分析平台。因此适合作为快速获取概貌的起点。</p>
+    </div>
+
+    <!-- 第二个场景/可信克制的说明 -->
+    <div class="scenario-block" style="border-left-color: #83bdb4;">
+        <h2>📎 内容边界与说明</h2>
+        <p>页面展示的数据与资料均来自公开整理，不包含任何预测、投资建议或诱导性表述。星空体育主要承担信息聚合角色，用户应自行核实关键数据。</p>
+        <p style="margin-bottom:0;">本页不对具体赛事结果、赔率或商业行为做任何保证。体育信息存在时效性，建议以官方发布为准。保持理性的信息获取习惯。</p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+        <h2>❓ 常见索引问题</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <strong>如何快速找到某支队伍？</strong>
+                <p>使用站内分类筛选或搜索关键词（队伍名/联赛缩写）即可定位。</p>
+            </div>
+            <div class="faq-item">
+                <strong>信息更新频率？</strong>
+                <p>主要赛事数据随赛程滚动更新，历史数据按赛季归档。具体以页面标注为准。</p>
+            </div>
+            <div class="faq-item">
+                <strong>能否直接引用数据？</strong>
+                <p>建议二次核对来源。星空体育作为索引页，数据仅供参考，不构成权威发布。</p>
+            </div>
+            <div class="faq-item">
+                <strong>移动端浏览体验？</strong>
+                <p>页面采用响应式设计，卡片与列表在窄屏自动适配，可正常翻阅资料。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 可信访问 -->
+    <footer class="footer-note">
+        <span>资料索引 · <a href="https://dl-xingkongsports.com">星空体育</a> · 信息聚合说明</span>
+        <span class="quiet">本页面仅做内容展示，不构成任何引导。</span>
+    </footer>
+</div>
+</body>
+</html>
