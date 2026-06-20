@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赏金大对决 · 信息索引与资料整理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #ffedd5 0%, #fce4c8 30%, #f8d4b0 70%, #f5cba7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.2rem 3rem;
+            line-height: 1.6;
+            color: #2c241c;
+        }
+        .page-wrap {
+            max-width: 1080px;
+            width: 100%;
+        }
+        /* hero */
+        .hero {
+            background: rgba(255, 248, 235, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 48px 48px 32px 32px;
+            padding: 3rem 2.5rem 2.8rem;
+            margin-bottom: 2.8rem;
+            box-shadow: 0 12px 28px rgba(120, 60, 30, 0.12);
+            border: 1px solid rgba(255, 215, 170, 0.3);
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 550;
+            letter-spacing: 2px;
+            color: #5f3e28;
+            margin-bottom: 0.7rem;
+            text-shadow: 0 2px 4px rgba(200, 140, 80, 0.15);
+        }
+        .hero .subhead {
+            font-size: 1.2rem;
+            color: #7a5a42;
+            background: rgba(249, 222, 190, 0.6);
+            display: inline-block;
+            padding: 0.4rem 1.6rem;
+            border-radius: 60px;
+            backdrop-filter: blur(2px);
+            margin-top: 0.3rem;
+            letter-spacing: 1px;
+            font-weight: 380;
+        }
+        .hero p {
+            margin-top: 1.2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+            color: #3b2c20;
+            background: rgba(255, 239, 215, 0.35);
+            padding: 0.8rem 1.6rem;
+            border-radius: 48px;
+        }
+        /* 卡片通用 */
+        .card {
+            background: rgba(255, 250, 242, 0.88);
+            backdrop-filter: blur(3px);
+            border-radius: 36px;
+            padding: 2.2rem 2.4rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 18px rgba(90, 50, 20, 0.08);
+            border: 1px solid rgba(255, 235, 210, 0.5);
+            transition: box-shadow 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 10px 28px rgba(120, 70, 30, 0.10);
+        }
+        .section-title {
+            font-size: 1.7rem;
+            font-weight: 500;
+            color: #5f3e28;
+            margin-bottom: 1.2rem;
+            border-left: 6px solid #dc9f6b;
+            padding-left: 1rem;
+            letter-spacing: 1px;
+        }
+        .section-title small {
+            font-size: 1rem;
+            font-weight: 350;
+            color: #7a5a42;
+            margin-left: 0.6rem;
+        }
+        /* 优势区 四列网格 */
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 0.2rem;
+        }
+        .advantage-item {
+            background: rgba(255, 241, 222, 0.7);
+            border-radius: 28px;
+            padding: 1.6rem 1.2rem;
+            text-align: center;
+            border: 1px solid rgba(220, 160, 110, 0.2);
+            backdrop-filter: blur(2px);
+        }
+        .advantage-item .emoji-big {
+            font-size: 2.4rem;
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+        .advantage-item h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #4f3625;
+            margin-bottom: 0.4rem;
+        }
+        .advantage-item p {
+            font-size: 0.95rem;
+            color: #4f3a2b;
+        }
+        /* 说明区 / 场景 */
+        .two-col {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .col {
+            flex: 1;
+            min-width: 220px;
+        }
+        .col ul {
+            list-style: none;
+            padding: 0;
+        }
+        .col ul li {
+            padding: 0.5rem 0 0.5rem 1.8rem;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23b07d4e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>') left center no-repeat;
+            background-size: 18px;
+            margin-bottom: 0.3rem;
+            color: #3f2e1f;
+        }
+        .highlight-badge {
+            display: inline-block;
+            background: #eac29a;
+            color: #2e221a;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 450;
+            margin-top: 0.4rem;
+        }
+        /* FAQ摘要 */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.6rem;
+        }
+        .faq-item {
+            background: rgba(248, 235, 217, 0.5);
+            border-radius: 24px;
+            padding: 1.2rem 1.6rem;
+            border-left: 5px solid #dba16e;
+        }
+        .faq-item .q {
+            font-weight: 550;
+            color: #4f3625;
+            margin-bottom: 0.4rem;
+        }
+        .faq-item .a {
+            font-size: 0.95rem;
+            color: #3d2d1f;
+        }
+        /* 底部链接 */
+        .footer-links {
+            margin-top: 2.2rem;
+            padding: 1.6rem 0 0.6rem;
+            border-top: 1px solid rgba(180, 130, 80, 0.2);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem 3.2rem;
+            text-align: center;
+        }
+        .footer-links a, .footer-links span {
+            color: #4d3422;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.2rem 0.4rem;
+            border-radius: 30px;
+            transition: background 0.2s;
+        }
+        .footer-links a {
+            background: rgba(230, 190, 150, 0.25);
+            padding: 0.2rem 1.2rem;
+            border: 1px solid rgba(200, 150, 100, 0.25);
+        }
+        .footer-links a:hover {
+            background: rgba(220, 170, 120, 0.4);
+        }
+        .footer-note {
+            font-size: 0.9rem;
+            color: #5b4432;
+            margin-top: 1.2rem;
+            opacity: 0.8;
+        }
+        /* 响应式 */
+        @media (max-width: 800px) {
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .card {
+                padding: 1.8rem 1.5rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2rem 1.2rem;
+            }
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            .two-col {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .footer-links {
+                gap: 1.2rem;
+            }
+        }
+        a {
+            text-decoration: none;
+        }
+        .inline-link {
+            color: #7a4e2e;
+            font-weight: 450;
+            border-bottom: 2px dotted #c99765;
+            padding-bottom: 1px;
+            transition: border 0.2s;
+        }
+        .inline-link:hover {
+            border-bottom: 2px solid #925f36;
+        }
+        .btn-style-link {
+            display: inline-block;
+            background: #eac8a6;
+            padding: 0.45rem 2rem;
+            border-radius: 60px;
+            color: #2c1f15;
+            font-weight: 480;
+            border: 1px solid #d9aa78;
+            box-shadow: 0 2px 6px rgba(150, 90, 40, 0.1);
+            transition: 0.15s;
+            letter-spacing: 0.5px;
+        }
+        .btn-style-link:hover {
+            background: #e0b88b;
+            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(130, 70, 25, 0.15);
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- hero -->
+    <div class="hero">
+        <h1>🎯 赏金大对决</h1>
+        <div class="subhead">资料索引 · 信息整理 · 玩家备忘</div>
+        <p>一份围绕「赏金大对决」的轻量信息页，汇集常见说明、特点摘要与问答参考，方便快速浏览与归档。</p>
+    </div>
+
+    <!-- 优势区：特点归纳 -->
+    <div class="card">
+        <div class="section-title">⚡ 特点概览 <small>基于公开资料整理</small></div>
+        <div class="grid-4">
+            <div class="advantage-item">
+                <span class="emoji-big">📋</span>
+                <h3>规则透明</h3>
+                <p>胜负判定与奖励机制均有明确说明，便于查阅与理解。</p>
+            </div>
+            <div class="advantage-item">
+                <span class="emoji-big">🔄</span>
+                <h3>节奏紧凑</h3>
+                <p>单局耗时较短，适合碎片时间浏览或参与。</p>
+            </div>
+            <div class="advantage-item">
+                <span class="emoji-big">🧩</span>
+                <h3>策略组合</h3>
+                <p>存在多种搭配路线，不同选择带来不同局面走向。</p>
+            </div>
+            <div class="advantage-item">
+                <span class="emoji-big">📊</span>
+                <h3>数据可查</h3>
+                <p>历史记录、排行榜与统计信息可供参考复盘。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 说明区：场景与索引 -->
+    <div class="card">
+        <div class="section-title">🗂️ 信息索引与应用场景</div>
+        <div class="two-col">
+            <div class="col">
+                <h3 style="font-weight:500; margin-bottom:0.6rem; color:#5f3e28;">📌 适合浏览的场景</h3>
+                <ul>
+                    <li>了解基础设定与玩法框架</li>
+                    <li>查阅更新日志或活动公告</li>
+                    <li>对比不同版本间的调整内容</li>
+                    <li>收集社区讨论与玩家心得</li>
+                </ul>
+                <span class="highlight-badge">轻量参考</span>
+            </div>
+            <div class="col">
+                <h3 style="font-weight:500; margin-bottom:0.6rem; color:#5f3e28;">📁 常用资料分类</h3>
+                <ul>
+                    <li>角色 / 阵营说明</li>
+                    <li>奖励层次与解锁条件</li>
+                    <li>常见术语与缩写</li>
+                    <li>官方指引与帮助文档</li>
+                </ul>
+                <span class="highlight-badge">持续整理</span>
+            </div>
+        </div>
+        <div style="margin-top:1.4rem; background:rgba(230,195,160,0.2); border-radius:36px; padding:1rem 1.6rem;">
+            <p style="color:#3b2c20;">📎 更多细节可前往 <a href="https://games-bountyshowdown.com" class="inline-link">赏金大对决</a> 查阅官方页面，信息以网站实时内容为准。</p>
+        </div>
+    </div>
+
+    <!-- FAQ摘要 -->
+    <div class="card">
+        <div class="section-title">❓ FAQ 摘要 <small>常见疑问简答</small></div>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="q">🔹 是否支持多平台？</div>
+                <div class="a">官方页面适配主流设备和浏览器，建议使用最新版本访问以获得完整布局。</div>
+            </div>
+            <div class="faq-item">
+                <div class="q">🔸 数据多久更新？</div>
+                <div class="a">活动与排行数据通常实时或准实时刷新，具体以网站标注为准。</div>
+            </div>
+            <div class="faq-item">
+                <div class="q">🔹 是否有新手引导？</div>
+                <div class="a">网站内包含指引类文本，部分流程配有说明图或示例。</div>
+            </div>
+            <div class="faq-item">
+                <div class="q">🔸 如何反馈问题？</div>
+                <div class="a">可通过官方提供的联系方式或内页反馈渠道提交，处理时效依情况而定。</div>
+            </div>
+        </div>
+        <div style="margin-top:1.2rem; font-size:0.95rem; color:#4f3a2b; background:rgba(255,238,215,0.5); padding:0.6rem 1.4rem; border-radius:60px; display:inline-block;">
+            ⚡ 更多问答请直接浏览 <a href="https://games-bountyshowdown.com" style="color:#553b28; font-weight:450; text-decoration:underline dotted;">赏金大对决</a> 相关页面。
+        </div>
+    </div>
+
+    <!-- 底部链接 -->
+    <div class="footer-links">
+        <a href="https://games-bountyshowdown.com" class="btn-style-link">赏金大对决</a>
+        <span style="background:transparent; border:none; padding:0.2rem 0;">📋 资料索引</span>
+        <span style="background:transparent; border:none; padding:0.2rem 0;">🕊️ 信息整理</span>
+        <a href="#" style="background:transparent; border:none; color:#5d4030; text-decoration:underline dotted;">页面说明</a>
+    </div>
+    <div class="footer-note">
+        本页为独立整理的介绍页，内容基于公开信息汇编，不构成官方立场。更新于2025年。
+    </div>
+
+</div>
+</body>
+</html>
